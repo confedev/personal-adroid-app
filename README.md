@@ -1,6 +1,6 @@
 # personal-android-app
 
-A simple Android application designed for testing and experimenting with modern mobile features, built using Java 17, terminal-based commands, and Docker.
+A simple Android application designed for testing and experimenting with modern mobile features, built using Kotlin, Java 17, terminal-based commands, and Docker.
 
 ---
 
@@ -9,7 +9,7 @@ A simple Android application designed for testing and experimenting with modern 
 ```text
 personal-android-app/
 ├── .gemini/
-│   └── context-rules.md    # AGENT CONTEXT RULES
+│   ├── context-rules.md    # AGENT CONTEXT RULES
 │   └── system-prompt.md    # AGENT SYSTEM PROMPT
 ├── specs/
 │   ├── README.md           # Documentation for system specifications
@@ -36,39 +36,39 @@ To build, test, and run this project, you **do not** need Android Studio install
 
 ## Getting Started & Terminal Workflows (Using Docker)
 
-Since this project avoids Android Studio, all compilation and building are handled via command-line tools running inside a Docker container pre-configured with the Android SDK and Java 17.
+Since this project avoids Android Studio, all compilation and building are handled via command-line tools running inside a Docker container (`mobiledevops/android-sdk-image:34.0.0`) pre-configured with the Android SDK, Java 17, and Kotlin.
 
 ### 1. Run a Command Inside the Docker Container
-You can spin up an interactive or one-shot Docker container containing the Android SDK and Java 17 to execute Gradle commands. For example, using an official OpenJDK/Android SDK image:
+You can spin up a one-shot Docker container containing the Android SDK and Java 17 to execute Gradle commands. For example, checking the Java version:
 
 ```bash
-docker run --rm -v "$(pwd)":/workspace -w /workspace mobileci/android-sdk:ubuntu java -version
+docker run --rm -v "$PWD":/workspace -w /workspace mobiledevops/android-sdk-image:34.0.0 java -version
 ```
 
 ### 2. Clean the Project
 To clean previous build artifacts:
 ```bash
-docker run --rm -v "$(pwd)":/workspace -w /workspace mobileci/android-sdk:ubuntu ./gradlew clean
+docker run --rm -v "$PWD":/workspace -w /workspace mobiledevops/android-sdk-image:34.0.0 ./gradlew clean
 ```
 
 ### 3. Compile and Build Debug APK
 To compile the project and build a debug APK for testing:
 ```bash
-docker run --rm -v "$(pwd)":/workspace -w /workspace mobileci/android-sdk:ubuntu ./gradlew assembleDebug
+docker run --rm -v "$PWD":/workspace -w /workspace mobiledevops/android-sdk-image:34.0.0 ./gradlew assembleDebug
 ```
 *Once finished, the debug APK will be located at: `app/build/outputs/apk/debug/app-debug.apk`*
 
 ### 4. Build Release APK (Exporting)
 To generate a production-ready release APK:
 ```bash
-docker run --rm -v "$(pwd)":/workspace -w /workspace mobileci/android-sdk:ubuntu ./gradlew assembleRelease
+docker run --rm -v "$PWD":/workspace -w /workspace mobiledevops/android-sdk-image:34.0.0 ./gradlew assembleRelease
 ```
 *The release APK will be located at: `app/build/outputs/apk/release/app-release.apk`*
 
 ### 5. Run Unit Tests
 To execute automated unit tests:
 ```bash
-docker run --rm -v "$(pwd)":/workspace -w /workspace mobileci/android-sdk:ubuntu ./gradlew test
+docker run --rm -v "$PWD":/workspace -w /workspace mobiledevops/android-sdk-image:34.0.0 ./gradlew test
 ```
 
 ---
@@ -80,3 +80,9 @@ docker run --rm -v "$(pwd)":/workspace -w /workspace mobileci/android-sdk:ubuntu
    ./gradlew installDebug
    ```
 2. **Manual Installation:** Transfer the generated `app-debug.apk` from the `app/build/outputs/apk/debug/` folder onto your physical Android device and tap it to install and test.
+
+---
+
+## Documentation References
+- For system specifications, refer to [specs/README.md](specs/README.md).
+- For feature blueprints, refer to [features/README.md](features/README.md).
