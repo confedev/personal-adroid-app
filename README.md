@@ -57,19 +57,19 @@ When executing Gradle commands inside the container image (`mobiledevops/android
 
 ## Command Workflows (Using Helper Scripts)
 
-### 1. Compile and Build Debug APK
+### 1. Compile and Build Debug APK (Ready for Device Install)
 Build the debug APK:
 ```bash
 ./build.sh
 ```
-*Generated APK location: `app/build/outputs/apk/debug/app-debug.apk`*
+*The full installable APK is automatically placed in: `dist/personal-app-debug.apk`*
 
 ### 2. Compile and Build Release APK
 Build the release APK:
 ```bash
 ./build.sh release
 ```
-*Generated APK location: `app/build/outputs/apk/release/app-release-unsigned.apk`*
+*Generated APK location: `dist/personal-app-release.apk`*
 
 ### 3. Run Automated Unit Tests
 Execute unit tests inside the container:
@@ -114,7 +114,7 @@ docker run --rm \
    ```bash
    ./gradlew installDebug
    ```
-2. **Manual Installation:** Transfer the generated `app/build/outputs/apk/debug/app-debug.apk` onto your Android device and tap it to install and test.
+2. **Manual Installation:** Transfer the generated `dist/personal-app-debug.apk` onto your Android device and tap it to install and test.
 
 ---
 
