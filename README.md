@@ -9,31 +9,38 @@ A simple Android application designed for testing and experimenting with modern 
 ```text
 personal-android-app/
 ├── .gemini/
-│   ├── context-rules.md    # Agent context rules and technical constraints
-│   └── system-prompt.md    # Agent system prompt
-├── specs/
-│   ├── README.md           # Documentation for system specifications
-│   └── architecture.md     # Technical specification & architecture design
-├── features/
-│   ├── README.md           # Documentation for user-facing features
-│   ├── menu-version.md     # Main menu and compile-time version display
-│   ├── test1-get-json.md   # Test 1: Download JSON to Downloads/test1/jsons
-│   └── test2-get-image.md  # Test 2: Download Image to Downloads/test2/images
-├── app/                    # Main Android application module
-│   ├── src/main/java/      # Kotlin source code (MVVM architecture)
-│   ├── src/main/res/       # Resource definitions (strings.xml, colors.xml, themes.xml)
-│   ├── src/test/java/      # Unit tests
-│   └── build.gradle.kts    # Module-level Gradle configuration
-├── AGENTS.md               # Agents rules and constraints
-├── build.gradle.kts        # Root Gradle build script
-├── settings.gradle.kts     # Root Gradle settings
-├── gradle.properties       # Gradle JVM and AndroidX configuration
-├── gradlew                 # Gradle wrapper executable
-├── gradle/wrapper/         # Gradle wrapper JAR and properties (Gradle 8.5)
-├── docker-run.sh           # Docker execution wrapper handling UID permissions & caches
-├── build.sh                # Helper script to build debug/release APK
-├── test.sh                 # Helper script to run automated unit tests
-└── clean.sh                # Helper script to clean build artifacts
+│   ├── context-rules.md          # Agent context rules and technical constraints
+│   └── system-prompt.md          # Agent system prompt
+├── .specs/                       # 🧠 Specifications (Single Source of Truth - SDD)
+│   ├── README.md                 # Specifications overview and index
+│   ├── system-architecture.md    # Overall system architecture, stack, and decisions
+│   ├── domain-model.md           # Domain model, entities, and state aggregates
+│   └── features/                 # Functional specs and plans per feature
+│       ├── README.md             # Features catalog and index
+│       ├── menu/
+│       │   ├── menu.spec.md      # Main menu & version requirements and flows
+│       │   └── menu.plan.md      # Main menu implementation plan
+│       ├── test1/
+│       │   ├── test1.spec.md     # Test 1 (JSON download) requirements and rules
+│       │   └── test1.plan.md     # Test 1 execution and testing plan
+│       └── test2/
+│           ├── test2.spec.md     # Test 2 (Image download) requirements and rules
+│           └── test2.plan.md     # Test 2 execution and testing plan
+├── app/                          # Main Android application module
+│   ├── src/main/java/            # Kotlin source code (MVVM architecture)
+│   ├── src/main/res/             # Resource definitions (strings.xml, colors.xml, themes.xml)
+│   ├── src/test/java/            # Unit tests
+│   └── build.gradle.kts          # Module-level Gradle configuration
+├── AGENTS.md                     # Agents rules and constraints
+├── build.gradle.kts              # Root Gradle build script
+├── settings.gradle.kts           # Root Gradle settings
+├── gradle.properties             # Gradle JVM and AndroidX configuration
+├── gradlew                       # Gradle wrapper executable
+├── gradle/wrapper/               # Gradle wrapper JAR and properties (Gradle 8.5)
+├── docker-run.sh                 # Docker execution wrapper handling UID permissions & caches
+├── build.sh                      # Helper script to build debug/release APK
+├── test.sh                       # Helper script to run automated unit tests
+└── clean.sh                      # Helper script to clean build artifacts
 ```
 
 ---
@@ -118,6 +125,11 @@ docker run --rm \
 
 ---
 
-## Documentation References
-- For architecture and storage design, refer to [specs/architecture.md](specs/architecture.md).
-- For feature blueprints and behavior, refer to [features/README.md](features/README.md).
+## Documentation References (SDD)
+- **Specifications Root:** [.specs/README.md](.specs/README.md)
+- **System Architecture & Stack:** [.specs/system-architecture.md](.specs/system-architecture.md)
+- **Domain Model & Entities:** [.specs/domain-model.md](.specs/domain-model.md)
+- **Feature Specs & Plans:** [.specs/features/README.md](.specs/features/README.md)
+  - [Main Menu & Version Spec](.specs/features/menu/menu.spec.md) | [Plan](.specs/features/menu/menu.plan.md)
+  - [Test 1 (JSON Download) Spec](.specs/features/test1/test1.spec.md) | [Plan](.specs/features/test1/test1.plan.md)
+  - [Test 2 (Image Download) Spec](.specs/features/test2/test2.spec.md) | [Plan](.specs/features/test2/test2.plan.md)

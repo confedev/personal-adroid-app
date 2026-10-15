@@ -16,3 +16,14 @@
 - **Docker-Preferred Builds:** Always recommend and prefer running Gradle commands inside the official container image:
   - Docker Image: `mobiledevops/android-sdk-image:34.0.0`
   - Example wrapper command: `docker run --rm -v "$PWD":/workspace -w /workspace mobiledevops/android-sdk-image:34.0.0 ./gradlew assembleDebug`
+
+## Spec-Driven Development (SDD) Pattern & Rules
+- **Single Source of Truth (`.specs/`):** All requirements, architecture guidelines, and domain models are strictly defined in `.specs/` before implementing code.
+- **SDD Structure Standards:**
+  - `.specs/system-architecture.md`: Overall system architecture, stack, layer boundaries, and technical decisions.
+  - `.specs/domain-model.md`: Domain models, entities, value objects, and reactive UI state aggregates.
+  - `.specs/features/<feature>/`: Feature-specific modules. Each feature must maintain:
+    - `<feature>.spec.md`: User stories, functional requirements, business rules, and UI interaction flows.
+    - `<feature>.plan.md`: Step-by-step execution and technical implementation plan for AI agents or developers.
+- **Specification-First Rule:** Never introduce new features or change business logic without first updating or defining the corresponding `.spec.md` and `.plan.md` in `.specs/features/`.
+- **Documentation Integrity:** Any refactoring or code alteration must maintain synchronization between code, specs, plans, and README files.
