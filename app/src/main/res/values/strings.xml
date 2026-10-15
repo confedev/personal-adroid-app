@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Personal App</string>
+    <string name="app_version_format">App Version: %1$s</string>
+    <string name="menu_title">Functional Modules</string>
+    <string name="menu_subtitle">Select a feature to test</string>
+    <string name="menu_item_test1">test1 (get json)</string>
+    <string name="menu_item_test2">test2 (get image)</string>
+
+    <string name="test1_title">Test 1 - Get JSON</string>
+    <string name="test2_title">Test 2 - Get Image</string>
+
+    <string name="url_input_label">Resource URL</string>
+    <string name="url_input_json_placeholder">https://api.github.com/users/octocat</string>
+    <string name="url_input_image_placeholder">https://picsum.photos/400/300</string>
+
+    <string name="btn_download">Download</string>
+    <string name="btn_back">Back</string>
+
+    <string name="status_idle">Ready</string>
+    <string name="status_downloading">Downloading, please wait...</string>
+    <string name="status_success">File downloaded successfully: %1$s</string>
+    <string name="status_error">Download failed: %1$s</string>
+    <string name="error_invalid_url">Please enter a valid HTTP or HTTPS URL</string>
+    <string name="content_desc_preview">Downloaded image preview</string>
+</resources>

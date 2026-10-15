@@ -1,0 +1,5 @@
+<resources>
+    <style name="Theme.PersonalAndroidApp" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/download_green</item>
+    </style>
+</resources>
