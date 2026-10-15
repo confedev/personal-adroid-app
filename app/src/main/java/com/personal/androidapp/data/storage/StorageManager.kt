@@ -55,23 +55,23 @@ class StorageManager(private val context: Context) {
             put(MediaStore.Downloads.IS_PENDING, 1)
         }
 
-        val uri: Uri? = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
+        val targetUri: Uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
             ?: return DownloadResult.Error("Failed to create MediaStore entry for $fileName")
 
         try {
-            resolver.openOutputStream(uri)?.use { outputStream ->
+            resolver.openOutputStream(targetUri)?.use { outputStream ->
                 inputStream.copyTo(outputStream)
-            } ?: return DownloadResult.Error("Cannot open output stream for URI: $uri")
+            } ?: return DownloadResult.Error("Cannot open output stream for URI: $targetUri")
 
             contentValues.clear()
             contentValues.put(MediaStore.Downloads.IS_PENDING, 0)
-            resolver.update(uri, contentValues, null, null)
+            resolver.update(targetUri, contentValues, null, null)
 
             val displayPath = "$relativeSubDir/$fileName"
-            Log.d(TAG, "Successfully saved file to $displayPath (URI: $uri)")
-            return DownloadResult.Success(fileName = fileName, filePath = displayPath, uri = uri)
+            Log.d(TAG, "Successfully saved file to $displayPath (URI: $targetUri)")
+            return DownloadResult.Success(fileName = fileName, filePath = displayPath, uri = targetUri)
         } catch (e: Exception) {
-            resolver.delete(uri, null, null)
+            resolver.delete(targetUri, null, null)
             throw e
         }
     }

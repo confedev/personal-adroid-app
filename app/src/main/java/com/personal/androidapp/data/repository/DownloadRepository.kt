@@ -7,6 +7,7 @@ import com.personal.androidapp.data.model.DownloadResult
 import com.personal.androidapp.data.storage.StorageManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.text.SimpleDateFormat
@@ -143,7 +144,7 @@ class DownloadRepository(
 
         // 3. Check URL path segment
         val lastPathSegment = try {
-            okhttp3.HttpUrl.get(url).pathSegments.lastOrNull { it.isNotEmpty() }
+            url.toHttpUrlOrNull()?.pathSegments?.lastOrNull { it.isNotEmpty() }
         } catch (e: Exception) {
             null
         }
